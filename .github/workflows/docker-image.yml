@@ -18,4 +18,4 @@ jobs:
         username: ubuntu
         key: ${{ secrets.KEY }}
         port: 22
-        run: ls
+        script: ls
