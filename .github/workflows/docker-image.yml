@@ -1,0 +1,22 @@
+name: PHP Prod Application
+on:
+  push:
+    branches: main
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    branches: main
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@v0.1.4
+      with:
+        host: ec2-13-233-1-187.ap-south-1.compute.amazonaws.com
+        username: ubuntu
+        key: ${{ secrets.KEY }}
+        port: 22
+    - name: Build the stack
+      run: cd docker-project && git pull && docker-compose up -d && docker ps
