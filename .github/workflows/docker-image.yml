@@ -18,4 +18,8 @@ jobs:
         username: ubuntu
         key: ${{ secrets.KEY }}
         port: 22
-        script: ls
+        script: |
+          cd docker-project
+          git pull
+          docker-compose up -d
+          docker ps
